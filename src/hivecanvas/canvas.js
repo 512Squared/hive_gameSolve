@@ -26,12 +26,14 @@ let running = false;
 let abort = false;
 let gamePause = false;
 let oneStep = false;
-let gameSolve = true;
+let gameSolve = false;
 let gameSolveCycle = 1;
 let permutation = 0;
 let totalPermutationsTested = 0;
 let alertActive = true;
 let alert2Active = true;
+let permID = true;
+
 
 
 
@@ -59593,6 +59595,8 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             ctx.fillRect(slot5.xSlot, slot5.ySlot + 35, 35, 2);
             ctx.fillRect(slot6.xSlot, slot6.ySlot + 35, 35, 2);
 
+            
+
 
 
         }
@@ -59612,6 +59616,9 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             ctx.drawImage(atlas, 665, 0, 35, 35, 136, 560, 35, 35); // x1 on=630
             ctx.drawImage(atlas, 700, 0, 35, 35, 172, 560, 35, 35); // x2 off on=735
             ctx.drawImage(atlas, 770, 0, 35, 35, 208, 560, 35, 35); // x3 off on=805
+
+            // yin yang
+            ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35); // 
 
             // gameLoop animation boxes
 
@@ -60249,6 +60256,29 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 console.log("x3 speed selected");
                 playSpeed = speed[2];
                 console.log(playSpeed);
+            }
+        });
+
+        // ying-yang 
+        canvas.addEventListener('click', function (yinyang) {
+            if (
+                yinyang.x > 938 + 8 && // this is the 35 offset horiz left
+                yinyang.x < 938 + 35 + 8 && // this is the 35 offest horiz right
+                yinyang.y > 560 + 58 && // this is the 35 offset for vertical top
+                yinyang.y < 560 + 35 + 58 // this is the 35 offest for vertical bottom
+            ) {
+                console.log("hello motherfuckers");
+                switch (gameSolve) {
+                case false:
+                    gameSolve = true;
+                    console.log(gameSolve);
+                    break;
+                
+                case true:
+                    gameSolve = false;
+                    console.log(gameSolve);
+                    break;
+                }    
             }
         });
 
@@ -63412,7 +63442,8 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 //alert(i);
                 gameSolveCycle = gameSolveCycle + 1;
                 console.log("gameSolveCycle = " + gameSolveCycle);
-                console.log("pSquare value = " + pSquare.value)
+                console.log("pSquare value = " + pSquare.value);
+                
                 
                 if (gameSolve === true) {
                     
@@ -63439,14 +63470,20 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         alert("Game is near the end");
                         return;
                     }
-                    if (alertActive === true && starsLeftToGet === 10) {
-                        alertActive = false;
-                        gamePause = true;
-                        running = false;
-                        alert("Not bad for an amateur");
-                        console.log("Kid got some stars!");
-                        
-                        return;
+                    if (starsLeftToGet === 7 && permID === true) {
+                        let permID = false;
+                        // create new li element
+                        if (permID === permutation) {
+                            let menu = document.getElementById('menu');
+                            let li = document.createElement('li');
+                            li.textContent = arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4];
+                        // add it to the ul element
+                            menu.appendChild(li);
+                            console.log("Greatest Hits recorded");
+                            slotMain();
+                        }
+                        permID = permID + 1;
+                                                return;
                     }
 
                     if (pSquare.value === 18 && gameSolveCycle === 10) {

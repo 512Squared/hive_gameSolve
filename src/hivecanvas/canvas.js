@@ -20,7 +20,7 @@ let ctx = document.getElementById('canvas').getContext('2d');
 let arrowDirection = "arrowRight"; // use switch and case to change direction
 let moveForward = "moveRight"; // use switch to change calcs for movement
 let starsLeftToGet = 11;
-let speed = [350, 20, 1]
+let speed = [350, 1, 0.001]
 let playSpeed = speed[0];
 let running = false;
 let abort = false;
@@ -30,6 +30,9 @@ let gameSolve = true;
 let gameSolveCycle = 1;
 let permutation = 0;
 let totalPermutationsTested = 0;
+let alertActive = true;
+let alert2Active = true;
+
 
 
 
@@ -62958,8 +62961,8 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             }
             if (starsLeftToGet === 0) {
                 gamePause = true;
-                alert("YOU WON - you collected all 11 stars - well done!");
                 console.log("Winning Permutation = " + arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
+                alert("YOU WON - you collected all 11 stars - well done!");
                 return;
             }
             if (grid[pSquare.value][1] === "grey") { // board squares
@@ -63402,21 +63405,56 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
         function gameLoop() {
 
+            let noGreenNoPaint = arraySolve[permutation].includes("0,1" || "3,0" || "3,2" || "4,2");
+            let noTurns = arraySolve[permutation].includes("1,0" || "2,0" || "1,2" || "2,2");
+
             for (let i = 0; i < 1; i++) {
                 //alert(i);
                 gameSolveCycle = gameSolveCycle + 1;
                 console.log("gameSolveCycle = " + gameSolveCycle);
+                console.log("pSquare value = " + pSquare.value)
+                
                 if (gameSolve === true) {
-                    if (gameSolveCycle > 100) { //This was to break out of a loop if it doesn't find a solution
+                    
+                    if (noGreenNoPaint !== true) {
+                        console.log("No fucking green and no fucking paint")
                         solvePermutationReset();
                         return;
                     }
-                    if (permutation === 59049) {
+
+                    if (noTurns !== true) {
+                        console.log("Can't turn a fucking corner")
+                        solvePermutationReset();
+                        return;
+                    }
+                    
+                    if (gameSolveCycle > 70) { //This was to break out of a loop if it doesn't find a solution
+                        solvePermutationReset();
+                        return;
+                    }
+                    if (alert2Active === true && permutation === 59049) {
+                        alert2Active = false;
                         gamePause = true;
                         running = false;
                         alert("Game is near the end");
                         return;
                     }
+                    if (alertActive === true && starsLeftToGet === 10) {
+                        alertActive = false;
+                        gamePause = true;
+                        running = false;
+                        alert("Not bad for an amateur");
+                        console.log("Kid got some stars!");
+                        
+                        return;
+                    }
+
+                    if (pSquare.value === 18 && gameSolveCycle === 10) {
+                        console.log("Locked in the corner - reset initiated");
+                        solvePermutationReset();
+                        return;
+                    }
+
                 }
                 slotMain();
 

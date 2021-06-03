@@ -59595,7 +59595,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             ctx.fillRect(slot5.xSlot, slot5.ySlot + 35, 35, 2);
             ctx.fillRect(slot6.xSlot, slot6.ySlot + 35, 35, 2);
 
-            
+
 
 
 
@@ -60269,16 +60269,16 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             ) {
                 console.log("hello motherfuckers");
                 switch (gameSolve) {
-                case false:
-                    gameSolve = true;
-                    console.log(gameSolve);
-                    break;
-                
-                case true:
-                    gameSolve = false;
-                    console.log(gameSolve);
-                    break;
-                }    
+                    case false:
+                        gameSolve = true;
+                        console.log(gameSolve);
+                        break;
+
+                    case true:
+                        gameSolve = false;
+                        console.log(gameSolve);
+                        break;
+                }
             }
         });
 
@@ -63443,10 +63443,10 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 gameSolveCycle = gameSolveCycle + 1;
                 console.log("gameSolveCycle = " + gameSolveCycle);
                 console.log("pSquare value = " + pSquare.value);
-                
-                
+
+
                 if (gameSolve === true) {
-                    
+
                     if (noGreenNoPaint !== true) {
                         console.log("No fucking green and no fucking paint")
                         solvePermutationReset();
@@ -63458,7 +63458,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         solvePermutationReset();
                         return;
                     }
-                    
+
                     if (gameSolveCycle > 70) { //This was to break out of a loop if it doesn't find a solution
                         solvePermutationReset();
                         return;
@@ -63470,21 +63470,21 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         alert("Game is near the end");
                         return;
                     }
-                    if (starsLeftToGet === 7 && permID === true) {
-                        let permID = false;
-                        // create new li element
-                        if (permID === permutation) {
-                            let menu = document.getElementById('menu');
-                            let li = document.createElement('li');
-                            li.textContent = arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4];
-                        // add it to the ul element
-                            menu.appendChild(li);
-                            console.log("Greatest Hits recorded");
-                            slotMain();
-                        }
-                        permID = permID + 1;
-                                                return;
-                    }
+                    // if (starsLeftToGet === 7 && permID === true) {
+                    //     let permID = false;
+                    //     // create new li element
+                    //     if (permID === permutation) {
+                    //         let menu = document.getElementById('menu');
+                    //         let li = document.createElement('li');
+                    //         li.textContent = arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4];
+                    //         // add it to the ul element
+                    //         menu.appendChild(li);
+                    //         console.log("Greatest Hits recorded");
+                    //         slotMain();
+                    //     }
+                    //     permID = permID + 1;
+                    //     return;
+                    // }
 
                     if (pSquare.value === 18 && gameSolveCycle === 10) {
                         console.log("Locked in the corner - reset initiated");

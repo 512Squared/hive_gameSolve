@@ -63437,7 +63437,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
             let noGreenNoPaint = arraySolve[permutation].includes("0,1" || "3,0" || "3,2" || "4,2");
             let noTurns = arraySolve[permutation].includes("1,0" || "2,0" || "1,2" || "2,2");
-            let stageFright = arraySolve[permutation].includes("0,0" || "0,3");
+            let stageFright = arraySolve[permutation].includes("0,0" || "4,2");
 
             for (let i = 0; i < 1; i++) {
                 //alert(i);

@@ -9,16 +9,16 @@
 // CANVAS for Hive repro_solve 
 
 // Hello Chakra Blaster - welcome to your Hive_solve branch.
- 
-import {arraySolve1} from "./modules/array1.mjs";
-import {arraySolve2} from "./modules/array2.mjs";
-import {arraySolve3} from "./modules/array3.mjs";
-import {arraySolve4} from "./modules/array4.mjs";
-import {arraySolve5} from "./modules/array5.mjs";
-import {arraySolve6} from "./modules/array6.mjs";
+
+import { arraySolve1 } from "./modules/array1.mjs";
+import { arraySolve2 } from "./modules/array2.mjs";
+import { arraySolve3 } from "./modules/array3.mjs";
+import { arraySolve4 } from "./modules/array4.mjs";
+import { arraySolve5 } from "./modules/array5.mjs";
+import { arraySolve6 } from "./modules/array6.mjs";
 
 
-const arraySolve = [...arraySolve1, ...arraySolve2,...arraySolve3,...arraySolve4,...arraySolve5,...arraySolve6]
+const arraySolve = [...arraySolve1, ...arraySolve2, ...arraySolve3, ...arraySolve4, ...arraySolve5, ...arraySolve6]
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -26,8 +26,8 @@ canvas.height = window.innerHeight;
 let ctx = document.getElementById('canvas').getContext('2d');
 
 // SOME KEY START PARAMETERS
-let arrowDirection = "arrowRight"; 
-let moveForward = "moveRight"; 
+let arrowDirection = "arrowRight";
+let moveForward = "moveRight";
 let starsLeftToGet = 11;
 let speed = [350, 100, 0.00001]
 let playSpeed = speed[0];
@@ -40,13 +40,8 @@ let gameSolveCycle = 1;
 let permutation = 0;
 let totalPermutationsTested = 0;
 let gOAT = 1;
-let solveLimit = 185460; // 185461
+let solveLimit = 537823; // 537824
 let stackFiltering = false;
-
-
-
-
-
 
 // BOARD GRID
 
@@ -95,7 +90,7 @@ let grid2 = [
 ];
 
 let greatestHits = [
-    
+
 ];
 
 
@@ -1140,7 +1135,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                                 ctx.drawImage(atlas, 280, 0, 35, 35, 352, 560, 35, 35); // pause off
                                 console.log("Pause ended!");
                                 document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-                        
+
                                 abort = false; // code snippet 2
                                 running = true;
                                 slotMain();
@@ -1234,7 +1229,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 yinyang.y > 552 + 58 && // this is the 35 offset for vertical top
                 yinyang.y < 568 + 35 + 58 // this is the 35 offest for vertical bottom
             ) {
-                
+
                 switch (gameSolve) {
                     case false:
                         gameSolve = true;
@@ -2440,7 +2435,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     }
                 }
 
-                if (arraySolve[permutation][0] === "2,1") { 
+                if (arraySolve[permutation][0] === "2,1") {
                     slot1.forwardOn = false;
                     slot1.turnRightOn = true;
                     slot1.turnLeftOn = false;
@@ -2462,7 +2457,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     }
                 }
 
-                if (arraySolve[permutation][0] === "4,1") { 
+                if (arraySolve[permutation][0] === "4,1") {
                     slot1.forwardOn = false;
                     slot1.turnRightOn = false;
                     slot1.turnLeftOn = false;
@@ -2484,7 +2479,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     }
                 }
 
-                if (arraySolve[permutation][0] === "0,2") { 
+                if (arraySolve[permutation][0] === "0,2") {
                     slot1.forwardOn = true;
                     slot1.turnRightOn = false;
                     slot1.turnLeftOn = false;
@@ -2506,7 +2501,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     }
                 }
 
-                if (arraySolve[permutation][0] === "0,3") { 
+                if (arraySolve[permutation][0] === "0,3") {
                     slot1.forwardOn = true;
                     slot1.turnRightOn = false;
                     slot1.turnLeftOn = false;
@@ -2756,7 +2751,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][1] === "2,1") { 
+                if (arraySolve[permutation][1] === "2,1") {
                     slot2.forwardOn = false;
                     slot2.turnRightOn = true;
                     slot2.turnLeftOn = false;
@@ -2778,7 +2773,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][1] === "4,1") { 
+                if (arraySolve[permutation][1] === "4,1") {
                     slot2.forwardOn = false;
                     slot2.turnRightOn = false;
                     slot2.turnLeftOn = false;
@@ -2800,7 +2795,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][1] === "0,2") { 
+                if (arraySolve[permutation][1] === "0,2") {
                     slot2.forwardOn = true;
                     slot2.turnRightOn = false;
                     slot2.turnLeftOn = false;
@@ -2923,7 +2918,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     slot3.orangeOn = false;
                     slot3.greenOn = false;
                     slot3.greyOn = false;
-                    
+
                     ctx.drawImage(atlas, 105, 0, 35, 35, slot3.xSlot, slot3.ySlot, 35, 35);
                     ctx.drawImage(atlas, 560, 0, 35, 35, slot3.xSlot, slot3.ySlot, 35, 35);
 
@@ -3048,7 +3043,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][2] === "1,1") { 
+                if (arraySolve[permutation][2] === "1,1") {
                     slot3.forwardOn = false;
                     slot3.turnRightOn = false;
                     slot3.turnLeftOn = true;
@@ -3070,7 +3065,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][2] === "2,1") { 
+                if (arraySolve[permutation][2] === "2,1") {
                     slot3.forwardOn = false;
                     slot3.turnRightOn = true;
                     slot3.turnLeftOn = false;
@@ -3092,7 +3087,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][2] === "4,1") { 
+                if (arraySolve[permutation][2] === "4,1") {
                     slot3.forwardOn = false;
                     slot3.turnRightOn = false;
                     slot3.turnLeftOn = false;
@@ -3114,7 +3109,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][2] === "0,2") { 
+                if (arraySolve[permutation][2] === "0,2") {
                     slot3.forwardOn = true;
                     slot3.turnRightOn = false;
                     slot3.turnLeftOn = false;
@@ -3136,8 +3131,8 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                
-                if (arraySolve[permutation][2] === "0,3") { 
+
+                if (arraySolve[permutation][2] === "0,3") {
                     slot3.forwardOn = true;
                     slot3.turnRightOn = false;
                     slot3.turnLeftOn = false;
@@ -3366,7 +3361,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][3] === "1,1") { 
+                if (arraySolve[permutation][3] === "1,1") {
                     slot4.forwardOn = false;
                     slot4.turnRightOn = false;
                     slot4.turnLeftOn = true;
@@ -3389,7 +3384,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][3] === "2,1") { 
+                if (arraySolve[permutation][3] === "2,1") {
                     slot4.forwardOn = false;
                     slot4.turnRightOn = true;
                     slot4.turnLeftOn = false;
@@ -3412,7 +3407,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][3] === "4,1") { 
+                if (arraySolve[permutation][3] === "4,1") {
                     slot4.forwardOn = false;
                     slot4.turnRightOn = false;
                     slot4.turnLeftOn = false;
@@ -3458,7 +3453,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][3] === "0,3") { 
+                if (arraySolve[permutation][3] === "0,3") {
                     slot4.forwardOn = true;
                     slot4.turnRightOn = false;
                     slot4.turnLeftOn = false;
@@ -3689,7 +3684,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][4] === "1,1") { 
+                if (arraySolve[permutation][4] === "1,1") {
                     slot5.forwardOn = false;
                     slot5.turnRightOn = false;
                     slot5.turnLeftOn = true;
@@ -3711,7 +3706,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][4] === "2,1") { 
+                if (arraySolve[permutation][4] === "2,1") {
                     slot5.forwardOn = false;
                     slot5.turnRightOn = true;
                     slot5.turnLeftOn = false;
@@ -3733,7 +3728,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][4] === "4,1") { 
+                if (arraySolve[permutation][4] === "4,1") {
                     slot5.forwardOn = false;
                     slot5.turnRightOn = false;
                     slot5.turnLeftOn = false;
@@ -3777,7 +3772,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 }
 
-                if (arraySolve[permutation][4] === "0,3") { 
+                if (arraySolve[permutation][4] === "0,3") {
                     slot5.forwardOn = true;
                     slot5.turnRightOn = false;
                     slot5.turnLeftOn = false;
@@ -4963,12 +4958,12 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
         function gameLoop() {
 
             let noGreenNoPaint = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("4,1") || arraySolve[permutation].includes("0,3");
-            
+
             let noTurns = arraySolve[permutation].includes("1,0") || arraySolve[permutation].includes("1,1") || arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,0") || arraySolve[permutation].includes("2,1") || arraySolve[permutation].includes("2,2");
-            
+
             let stageFright = arraySolve[permutation].includes("0,0") || arraySolve[permutation].includes("3,0");
-            
-            let blueCorner = arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,2") || arraySolve[permutation].includes("3,2") || arraySolve[permutation].includes("4,2"); 
+
+            let blueCorner = arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,2") || arraySolve[permutation].includes("3,2") || arraySolve[permutation].includes("4,2");
 
 
             for (let i = 0; i < 1; i++) {
@@ -4976,7 +4971,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 gameSolveCycle = gameSolveCycle + 1;
                 console.log("gameSolveCycle = " + gameSolveCycle);
                 console.log("pSquare value = " + pSquare.value);
-                
+
 
                 if (gameSolve === true) {
 
@@ -4985,7 +4980,9 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                             greatestHits.push(arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
                         }
                     }
-                    if (permutation === solveLimit) {
+                    if (permutation > solveLimit) {
+                        gamePause = true;
+                        running = false; 
                         document.getElementById('header').innerHTML = 'Greatest Hits - 10-star wizards' + "\n";
                         let hits = document.getElementById('hits');
                         hits.innerHTML = greatestHits.map(i => `<li>${i}</li>`).join('');
@@ -4998,51 +4995,33 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         solvePermutationReset();
                         return;
                     }
-
                     if (noTurns !== true) {
                         console.log("Can't turn a fucking corner");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
                     }
-
                     if (stageFright !== true) {
                         console.log("Stuck on the first square");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
                     }
-
                     if (blueCorner !== true) {
                         console.log("Stuck on blue corner");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
-                    } 
-
-
+                    }
                     if (gameSolveCycle > 70) { //This was to break out of a loop if it doesn't find a solution
                         solvePermutationReset();
                     }
-                   
-                    //         let menu = document.getElementById('menu');
-                    //         let li = document.createElement('li');
-                    //         li.textContent = arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4];
-                    //         // add it to the ul element
-                    //         menu.appendChild(li);
-                    //         console.log("Greatest Hits recorded");
-                    //         slotMain();
-                    //     }
-                    //     permID = permID + 1;
-                    //     return;
-                    // }
 
                     if (pSquare.value === 18 && gameSolveCycle === 10) {
                         console.log("Locked in the corner - reset initiated");
                         solvePermutationReset();
                         return;
                     }
-
                 }
                 slotMain();
 
@@ -5424,9 +5403,9 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 ctx.drawImage(atlas, 140, 0, 35, 35, 381, 64, 40, 40); // slot 1
             }
         }
-        
+
         function haystackFiltering() {
-            
+
             if (stackFiltering === true) {
                 let needle1 = ["0,1", "3,0", "3,2", "4,2"];
                 let needle2 = ["1,0", "2,0", "1,2", "2,2"];
@@ -5440,14 +5419,14 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 console.log(arraySolve);
             }
         }
-        
-        haystackFiltering ();
+
+        haystackFiltering();
         slotAnimClear();
         solve();
-        
+
         console.log(arraySolve.length);
-        
-         
+
+
         /**
          * Used to generate the full array of permutations - code by Serkan KONAKCI
          * 
@@ -5462,26 +5441,26 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
          * console.log(combination(['A', 'B', 'C', 'D'])); // [['A', 'A', 'A', 'B' ],.....,['A'],] (340 items)
          * console.log(comination(4, 2)); // all posible values [[ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 0, 0 ], [ 0, 1 ], [ 0, 2 ]...] (20 items)
          */
-        
+
 
         function combination(item, n) {
-          const filter = typeof n !=='undefined';
-          n = n ? n : item.length;
-          const result = [];
-          const isArray = item.constructor.name === 'Array';
-        
-          const pow = (x, n, m = []) => {
-            if (n > 0) {
-              for (var i = 0; i < 17; i++) {
-                const value = pow(x, n - 1, [...m, isArray ? item[i] : i]);
-                result.push(value);
-              }
+            const filter = typeof n !== 'undefined';
+            n = n ? n : item.length;
+            const result = [];
+            const isArray = item.constructor.name === 'Array';
+
+            const pow = (x, n, m = []) => {
+                if (n > 0) {
+                    for (var i = 0; i < 17; i++) {
+                        const value = pow(x, n - 1, [...m, isArray ? item[i] : i]);
+                        result.push(value);
+                    }
+                }
+                return m;
             }
-            return m;
-          }
-          pow(isArray ? item.length : item, n);
-        
-          return filter ? result.filter(item => item.length == n) : result;
+            pow(isArray ? item.length : item, n);
+
+            return filter ? result.filter(item => item.length == n) : result;
         }
     }
 }

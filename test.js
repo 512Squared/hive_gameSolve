@@ -28,12 +28,42 @@ function gameLoop() {
 }
 gameLoop();
 
-let stageFright = arraySolve[permutation].includes("Forward+Orange") || arraySolve[permutation].includes("GreenPen+Orange");
+let stageFright = arraySolve[permutation].includes("0,0") || arraySolve[permutation].includes("3,0");
 
-let noGreenNoPaint = arraySolve[permutation].includes("Forward+Green") || arraySolve[permutation].includes("OrangePen+Green") || arraySolve[permutation].includes("Forward+Grey");
+let noForward = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("0,2") || arraySolve[permutation].includes("0,3") || arraySolve[permutation].includes("0,0"); 
+            
+let noGreenNoPaint = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("4,1") || arraySolve[permutation].includes("0,3");
 
-let noTurns = arraySolve[permutation].includes("TurnLeft+Orange") || arraySolve[permutation].includes("TurnLeft+Green") || arraySolve[permutation].includes("TurnLeft+Blue") || arraySolve[permutation].includes("TurnRight+Orange") || arraySolve[permutation].includes("TurnRight+Green") || arraySolve[permutation].includes("TurnRight+Blue");
+let noTurns = arraySolve[permutation].includes("1,0") || arraySolve[permutation].includes("1,1") || arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,0") || arraySolve[permutation].includes("2,1") || arraySolve[permutation].includes("2,2");
 
-let noForward = arraySolve[permutation].includes("Forward+Green") || arraySolve[permutation].includes("Forward+Blue") || arraySolve[permutation].includes("Forward+Grey") || arraySolve[permutation].includes("Forward+Orange"); 
+let blueCorner = arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,2") || arraySolve[permutation].includes("3,2") || arraySolve[permutation].includes("4,2");
 
-let blueCorner = arraySolve[permutation].includes("TurnLeft+Blue") || arraySolve[permutation].includes("TurnRight+Blue") || arraySolve[permutation].includes("GreenPen+Blue") || arraySolve[permutation].includes("OrangePen+Blue");
+stageFright - "can't get it up for the game!"
+!"Forward+Orange"
+!"GreenPen+Orange"
+
+noForward - "got no legs and no zippy wheelchair!"
+!"Forward+Green"
+!"Forward+Grey"
+!"Forward+Orange" 
+
+noGreenNoPaint - "no green forward and no fucking plan!"
+!"Forward+Green"
+!"OrangePen+Green"
+!"Forward+Grey"
+
+
+NoTurns - "can't turn a fucking corner!"
+
+!"TurnLeft+Orange"
+!"TurnLeft+Green"
+!"TurnLeft+Blue"
+!"TurnRight+Orange"
+!"TurnRight+Green"
+!"TurnRight+Blue"
+
+blueCorner - "picnic on the blue square!"
+!"TurnLeft+Blue"
+!"TurnRight+Blue"
+!"GreenPen+Blue"
+!"OrangePen+Blue"

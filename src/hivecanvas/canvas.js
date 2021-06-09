@@ -16,6 +16,7 @@ import { arraySolve3 } from "./modules/array3.mjs";
 import { arraySolve4 } from "./modules/array4.mjs";
 import { arraySolve5 } from "./modules/array5.mjs";
 import { arraySolve6 } from "./modules/array6.mjs";
+//import { arrayTest as arraySolve} from "./modules/arrayT.mjs";
 
 
 const arraySolve = [...arraySolve1, ...arraySolve2, ...arraySolve3, ...arraySolve4, ...arraySolve5, ...arraySolve6]
@@ -29,7 +30,7 @@ let ctx = document.getElementById('canvas').getContext('2d');
 let arrowDirection = "arrowRight";
 let moveForward = "moveRight";
 let starsLeftToGet = 11;
-let speed = [350, 100, 0.00001]
+let speed = [550, 100, 0.00001]
 let playSpeed = speed[0];
 let running = false;
 let abort = false;
@@ -40,7 +41,7 @@ let gameSolveCycle = 1;
 let permutation = 0;
 let totalPermutationsTested = 0;
 let gOAT = 1;
-let solveLimit = 537824; // 537824
+let solveLimit = 25; // 537824
 let stackFiltering = false;
 let combinationGenerator = false;
 
@@ -2822,7 +2823,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     slot2.forwardOn = true;
                     slot2.turnRightOn = false;
                     slot2.turnLeftOn = false;
-                    slot2.orangePenOn = true;
+                    slot2.orangePenOn = false;
                     slot2.greenPenOn = false;
                     slot2.blueOn = false;
                     slot2.orangeOn = false;
@@ -4956,16 +4957,16 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
         // main game loop function
 
-        function gameLoop() {
+        function gameLoop() { //
 
 
             let stageFright = arraySolve[permutation].includes("0,0") || arraySolve[permutation].includes("3,0");
 
+            let noForward = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("0,3") || arraySolve[permutation].includes("0,0"); 
+                        
             let noGreenNoPaint = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("4,1") || arraySolve[permutation].includes("0,3");
 
             let noTurns = arraySolve[permutation].includes("1,0") || arraySolve[permutation].includes("1,1") || arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,0") || arraySolve[permutation].includes("2,1") || arraySolve[permutation].includes("2,2");
-
-            let noForward = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("0,2") || arraySolve[permutation].includes("0,3") || arraySolve[permutation].includes("0,0"); 
 
             let blueCorner = arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,2") || arraySolve[permutation].includes("3,2") || arraySolve[permutation].includes("4,2");
 
@@ -4988,34 +4989,43 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         }
                     }
                     if (stageFright !== true) {
-                        console.log("Stuck on the first square");
+                        console.log("Can't get it up for the game!");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
                     }
                     if (noForward !== true) {
-                        console.log("Got no legs and no wheelchair!");
+                        console.log("Got no legs and no zippy wheelchair!");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
                     }
                     if (noGreenNoPaint !== true) {
-                        console.log("No green forward & no fucking plan");
+                        console.log("No green forward & no fucking plan!");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
                     }
                     if (noTurns !== true) {
-                        console.log("Can't turn a fucking corner");
+                        console.log("Can't turn a fucking corner!");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
                     }
                     if (blueCorner !== true) {
-                        console.log("Stuck on blue corner");
+                        console.log("Picnic on the blue square!");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
+                    }
+
+                    if (noGreenNoPaint === true) {
+                        if (arraySolve[permutation].includes("0,1") === false) {
+                            console.log("Let's all have a game of paint ball!");
+                            console.log(arraySolve[permutation]);
+                            solvePermutationReset();
+                            return; 
+                        }
                     }
                     if (pSquare.value === 18 && gameSolveCycle === 10) {
                         console.log("Locked in the corner - reset initiated");
@@ -5038,6 +5048,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             grid = JSON.parse(JSON.stringify(grid2));
             slotAnimClear();
             gamePause = false;
+            permutation = 0;
             slot1.boxActive = true;
             slot2.boxActive = false;
             slot3.boxActive = false;
@@ -5150,7 +5161,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
         // Run gameEngine (play or one-step eventlistener press); order: changeDirection, colourChange, movePlayer
         function solvePermutationReset() {
-            if (permutation > solveLimit - 1) {
+            if (permutation > solveLimit - 2) {
                 gamePause = true;
                 running = false;
                 document.getElementById('header').innerHTML = 'Greatest Hits - 10-star wizards' + "\n";

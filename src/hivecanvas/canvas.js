@@ -40,8 +40,9 @@ let gameSolveCycle = 1;
 let permutation = 0;
 let totalPermutationsTested = 0;
 let gOAT = 1;
-let solveLimit = 537823; // 537824
+let solveLimit = 537824; // 537824
 let stackFiltering = false;
+let combinationGenerator = false;
 
 // BOARD GRID
 
@@ -4514,7 +4515,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             if (starsLeftToGet === 0) {
                 gamePause = true;
                 console.log("Winning Permutation = " + arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
-                alert("YOU WON - you collected all 11 stars - well done!");
+                alert("YOU WON - you collected all 11 stars - well done! \n" + "Winning Permutation = " + arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4] + "\nStars obtained: " + (11 - starsLeftToGet));
                 return;
             }
             if (grid[pSquare.value][1] === "grey") { // board squares
@@ -4957,11 +4958,14 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
         function gameLoop() {
 
+
+            let stageFright = arraySolve[permutation].includes("0,0") || arraySolve[permutation].includes("3,0");
+
             let noGreenNoPaint = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("4,1") || arraySolve[permutation].includes("0,3");
 
             let noTurns = arraySolve[permutation].includes("1,0") || arraySolve[permutation].includes("1,1") || arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,0") || arraySolve[permutation].includes("2,1") || arraySolve[permutation].includes("2,2");
 
-            let stageFright = arraySolve[permutation].includes("0,0") || arraySolve[permutation].includes("3,0");
+            let noForward = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("0,2") || arraySolve[permutation].includes("0,3") || arraySolve[permutation].includes("0,0"); 
 
             let blueCorner = arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,2") || arraySolve[permutation].includes("3,2") || arraySolve[permutation].includes("4,2");
 
@@ -4974,19 +4978,25 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
 
                 if (gameSolve === true) {
-
+                    
+                    if (gameSolveCycle > 70) { //This was to break out of a loop if it doesn't find a solution
+                        solvePermutationReset();
+                    }
                     if (starsLeftToGet === gOAT) {
                         if (greatestHits.includes(arraySolve[permutation]) === false) {
                             greatestHits.push(arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
                         }
                     }
-                    if (permutation > solveLimit) {
-                        gamePause = true;
-                        running = false; 
-                        document.getElementById('header').innerHTML = 'Greatest Hits - 10-star wizards' + "\n";
-                        let hits = document.getElementById('hits');
-                        hits.innerHTML = greatestHits.map(i => `<li>${i}</li>`).join('');
-                        alert("The gameSolve algorithm has completed");
+                    if (stageFright !== true) {
+                        console.log("Stuck on the first square");
+                        console.log(arraySolve[permutation]);
+                        solvePermutationReset();
+                        return;
+                    }
+                    if (noForward !== true) {
+                        console.log("Got no legs and no wheelchair!");
+                        console.log(arraySolve[permutation]);
+                        solvePermutationReset();
                         return;
                     }
                     if (noGreenNoPaint !== true) {
@@ -5001,22 +5011,12 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         solvePermutationReset();
                         return;
                     }
-                    if (stageFright !== true) {
-                        console.log("Stuck on the first square");
-                        console.log(arraySolve[permutation]);
-                        solvePermutationReset();
-                        return;
-                    }
                     if (blueCorner !== true) {
                         console.log("Stuck on blue corner");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
                     }
-                    if (gameSolveCycle > 70) { //This was to break out of a loop if it doesn't find a solution
-                        solvePermutationReset();
-                    }
-
                     if (pSquare.value === 18 && gameSolveCycle === 10) {
                         console.log("Locked in the corner - reset initiated");
                         solvePermutationReset();
@@ -5150,6 +5150,19 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
         // Run gameEngine (play or one-step eventlistener press); order: changeDirection, colourChange, movePlayer
         function solvePermutationReset() {
+            if (permutation > solveLimit - 1) {
+                gamePause = true;
+                running = false;
+                document.getElementById('header').innerHTML = 'Greatest Hits - 10-star wizards' + "\n";
+                let hits = document.getElementById('hits');
+                hits.innerHTML = greatestHits.map(i => `<li>${i}</li>`).join('');
+                alert("The gameSolve algorithm has completed");
+                console.log("Solve algorithm completed.");
+                console.log("Stars obtained: " + (11 - starsLeftToGet));
+                console.log("Permutation ID: " + permutation);
+                console.log("Permutation: " + arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
+                return;
+            }
             slotAnimClear();
             permutation += 1;
             totalPermutationsTested += 1;
@@ -5404,6 +5417,10 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             }
         }
 
+        slotAnimClear();
+
+        // SOLVE PERMUTATIONS
+
         function haystackFiltering() {
 
             if (stackFiltering === true) {
@@ -5419,49 +5436,56 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 console.log(arraySolve);
             }
         }
+        function combination(item, n) {
+            let elements = 17;
+            if (combinationGenerator === true) {
+                const filter = typeof n !== 'undefined';
+                n = n ? n : item.length;
+                const result = [];
+                const isArray = item.constructor.name === 'Array';
+
+                const pow = (x, n, m = []) => {
+                    if (n > 0) {
+                        for (var i = 0; i < number; i++) {
+                            const value = pow(x, n - 1, [...m, isArray ? item[i] : i]);
+                            result.push(value);
+                        }
+                    }
+                    return m;
+                }
+                pow(isArray ? item.length : item, n);
+
+                return filter ? result.filter(item => item.length == n) : result;
+
+
+                //Combination generator
+
+                /** 
+                * @param {Array | number} item  - Item accepts array or number. If it is array exports all combination of items. If it is a number export all combination of the number
+                * @param {number} n - pow of the item, if given value is `n` it will be export max `n` item combination
+                * @param {boolean} filter - if it is true it will just export items which have got n items length. Otherwise xport all posible length.
+                * @return {Array} Array of combination arrays.
+                * 
+                * Usage Example: 
+                */
+
+                console.log(combination(['A', 'B', 'C', 'D'], elements, true)); // [[ 'A','A' ], [ 'A', 'B' ]...] (16 items)
+                console.log(combination(['A', 'B', 'C', 'D'])); // [['A', 'A', 'A', 'B' ],.....,['A'],] (340 items)
+                console.log(comination(4, 2)); // all posible values [[ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 0, 0 ], [ 0, 1 ], [ 0, 2 ]...] (20 items)
+
+            }
+        }
 
         haystackFiltering();
-        slotAnimClear();
+        combination();
         solve();
 
         console.log(arraySolve.length);
 
 
-        /**
-         * Used to generate the full array of permutations - code by Serkan KONAKCI
-         * 
-         * @param {Array | number} item  - Item accepts array or number. If it is array exports all combination of items. If it is a number export all combination of the number
-         * @param {number} n - pow of the item, if given value is `n` it will be export max `n` item combination
-         * @param {boolean} filter - if it is true it will just export items which have got n items length. Otherwise export all posible length.
-         * @return {Array} Array of combination arrays.
-         * 
-         * Usage Example:
-         * 
-         * console.log(combination(['A', 'B', 'C', 'D'], 2, true)); // [[ 'A','A' ], [ 'A', 'B' ]...] (16 items)
-         * console.log(combination(['A', 'B', 'C', 'D'])); // [['A', 'A', 'A', 'B' ],.....,['A'],] (340 items)
-         * console.log(comination(4, 2)); // all posible values [[ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 0, 0 ], [ 0, 1 ], [ 0, 2 ]...] (20 items)
-         */
 
 
-        function combination(item, n) {
-            const filter = typeof n !== 'undefined';
-            n = n ? n : item.length;
-            const result = [];
-            const isArray = item.constructor.name === 'Array';
 
-            const pow = (x, n, m = []) => {
-                if (n > 0) {
-                    for (var i = 0; i < 17; i++) {
-                        const value = pow(x, n - 1, [...m, isArray ? item[i] : i]);
-                        result.push(value);
-                    }
-                }
-                return m;
-            }
-            pow(isArray ? item.length : item, n);
-
-            return filter ? result.filter(item => item.length == n) : result;
-        }
     }
 }
 

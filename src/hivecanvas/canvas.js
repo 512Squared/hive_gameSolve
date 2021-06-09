@@ -41,7 +41,7 @@ let gameSolveCycle = 1;
 let permutation = 0;
 let totalPermutationsTested = 0;
 let gOAT = 1;
-let solveLimit = 25; // 537824
+let solveLimit = 537824; // 537824
 let stackFiltering = false;
 let combinationGenerator = false;
 
@@ -1238,6 +1238,11 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         console.log("Game on motherfuckers!");
                         document.getElementById('header').innerHTML = 'Game on motherfuckers! </br>   Wanna press PLAY?';
                         console.log(gameSolve);
+                        ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35);
+                        ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
+                        ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
+                        console.log("x3 speed selected");
+                        playSpeed = speed[2];
                         break;
 
                     case true:

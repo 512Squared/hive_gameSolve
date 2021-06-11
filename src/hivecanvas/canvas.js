@@ -31,7 +31,7 @@ let ctx = document.getElementById('canvas').getContext('2d');
 let arrowDirection = "arrowRight";
 let moveForward = "moveRight";
 let starsLeftToGet = 11;
-let speed = [350, 50, 0.00001]
+let speed = [350, 50, 0.0001]
 let playSpeed = speed[0];
 let running = false;
 let abort = false;
@@ -43,7 +43,7 @@ let permStart = 0;
 let permutation = permStart;
 let totalPermutationsTested = 0;
 let gOAT = 1;
-let solveLimit = 537824; // 537824
+let solveLimit = 24; // 537824
 let stackFiltering = false;
 let combinationGenerator = false;
 let tenStarWizards = false;
@@ -1116,7 +1116,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35); // yin-yang
 
                     if (tenStarWizards === true) {
-                        document.getElementById('hits').innerHTML = '</br>Sorry to disappoint! But there are actually NO solutions to this game. Not a single one! </br></br>But sit back and enjoy watching the 453 permutations that came closest. </br></br>All hail the 10-star Wizards!';   
+                        document.getElementById('hits').innerHTML = '</br>Sorry to disappoint! But there are actually NO solutions to this game. Not a single one! </br></br>But sit back and enjoy watching the 37 permutations that came closest. </br></br>All hail the 10-star Wizards!';   
                     }
 
                     if (everyPerm === true) {
@@ -1331,7 +1331,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35); //speed boxes
                         ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
                         ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
-                        console.log("x3 speed selected");
+                        console.log(arraySolve.length);
                         break;
 
                     case true:
@@ -4641,9 +4641,31 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             }
             if (grid[pSquare.value][1] === "grey") { // board squares
                 if (gameSolve === true) {
+                    let suspicious = [];
+                    if (solveLimit === 52){
+                        console.log(suspicious);
+                        
+                    }
+                    if (starsLeftToGet === 1){
+                        console.log("Ten stars achieved: ");
+                        console.log(arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
+                    }
+
+                    if (gameSolveCycle < 30){
+                        suspicious.push(arraySolve[permutation]); 
+                        console.log("Suspicious behaviour!");
+                        console.log("Permutation ID: " + permutation);
+                        solvePermutationReset();
+                        console.log(arraySolve[permutation]);
+                        //alert("Suspicious");
+                        //alert("Suspicious behaviour!");
+                        slotMain();
+                        return;
+                    }
                     slot = slotSelect[0];
                     ctx.fillStyle = "#f1f1f1"; // #d3cfc7 for later
                     ctx.fillRect(grid[(pSquare.value)][3], grid[(pSquare.value)][4], 35, 35);
+                    console.log("Off the board");
                     solvePermutationReset();
                 }
 
@@ -5262,7 +5284,6 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             console.log("Grid reset successfully initiated");
             gamePause = false;
             gameSolveCycle = 0;
-            permutation = permStart;
             totalPermutationsTested = 0;
             slotAnimClear();
             slot = slotSelect[0];
@@ -5284,17 +5305,12 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
         // Run gameEngine (play or one-step eventlistener press); order: changeDirection, colourChange, movePlayer
         function solvePermutationReset() {
-            if (permutation > solveLimit - 2) {
+            if (permutation === solveLimit) {
                 gamePause = true;
                 running = false;
                 document.getElementById('header').innerHTML = 'Greatest Hits - 10-star wizards' + "\n";
-                let hits = document.getElementById('hits');
-                hits.innerHTML = greatestHits.map(i => `<li>${i}</li>`).join('');
                 alert("The gameSolve algorithm has completed");
-                console.log("Solve algorithm completed.");
-                console.log("Stars obtained: " + (11 - starsLeftToGet));
-                console.log("Permutation ID: " + permutation);
-                console.log("Permutation: " + arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
+                gameSolve = false;
                 return;
             }
             slotAnimClear();

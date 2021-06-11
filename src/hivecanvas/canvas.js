@@ -1104,22 +1104,8 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     gameLoop();
                     document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
    
-                    ctx.drawImage(back, 0, 0, 480, 700, 550, 0, 480, 700); 
-    
-                    ctx.fillStyle = "#59534E";
-                    ctx.fillText("Execution", 282, 550);
-                    ctx.fillText("Speed", 137, 550);
-                    ctx.fillText("Functions", 647, 250);
-                    ctx.fillText("Commands", 888, 178);
-                    ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35);
-
-
-                    // pause off
                     //ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35);
             
-                    if (gameSolve === false){drawBoard();
-                    drawFunctionSlots();
-                    }
                     
                 }
 
@@ -1296,8 +1282,8 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         playSpeed = playSpeed[2];
                         arraySolve = arraySolve7;
                         document.getElementById('header').innerHTML = 'This is as good as it gets!</br>   Wanna press PLAY?';
-                        drawBoard();
-                        drawFunctionSlots();
+                        //drawBoard();
+                        //drawFunctionSlots();
                         ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35);
                         ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
                         ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
@@ -5199,7 +5185,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             ctx.fillText("Execution", 282, 550);
             ctx.fillText("Speed", 137, 550);
             ctx.fillText("Functions", 647, 250);
-            ctx.fillText("Commands", 888, 178);
+            ctx.fillText("Commands", 888, 178); 
             drawBoard();
             drawFunctionSlots();
 

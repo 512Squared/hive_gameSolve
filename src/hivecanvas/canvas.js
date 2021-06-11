@@ -1120,7 +1120,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     }
 
                     if (everyPerm === true) {
-                        document.getElementById('hits').innerHTML = "</br>Okay! You are clever. You've unlocked the permutation tester. </br></br>If you have 17 hours, you can watch all 537,824  possible permutations<sup>†</sup> being tested to see if any will get all 11 stars</br></br>All hail the Solve Wizard!</br></br>† Math for calculating the # of permutations: </br>(x<sub>1</sub>+x<sub>2</sub>+...+x<sub>n</sub>=k)";   
+                        document.getElementById('hits').innerHTML = "</br>Okay! You are clever. You've unlocked the permutation tester. </br></br>If you have ~17 hours, you can watch all 537,824  possible permutations<sup>†</sup> being tested to see if any will get all 11 stars</br></br>All hail the Solve Wizard!</br></br>† Math for calculating the # of permutations: </br>(x<sub>1</sub>+x<sub>2</sub>+...+x<sub>n</sub>=k)";   
                     }
 
 

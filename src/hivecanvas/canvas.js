@@ -1099,6 +1099,9 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 if (running === true) {
                     alert("Game is already running");
                 }
+                if (tenStarWizards === true) {
+                    document.getElementById('hits').innerHTML = 'There is NO solution to this game. But these are the greatest hits - all 453 of the 10-star wizard permutations discovered while searching all 537,824 possible permutations.';   
+                } 
                 running = true;
                 gamePause = false;
                 abort = false;
@@ -1302,10 +1305,10 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     case false:
                         tenStarWizards = true;
                         gameSolve = true;
-                        console.log("This is as good as it gets!");
+                        console.log("Yippee - you found a secret function!");
                         playSpeed = speed[2];
                         arraySolve = arraySolve7;
-                        document.getElementById('header').innerHTML = 'This is as good as it gets!</br>   Wanna press PLAY?';
+                        document.getElementById('header').innerHTML = 'Yippee - you found a secret function</br>   Wanna press PLAY?';
                         //drawBoard();
                         //drawFunctionSlots();
                         ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35);

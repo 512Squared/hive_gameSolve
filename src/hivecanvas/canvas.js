@@ -48,6 +48,7 @@ let stackFiltering = false;
 let combinationGenerator = false;
 let tenStarWizards = false;
 let everyPerm = false;
+let tenStarWizarLimit = 24;
 
 
 // BOARD GRID
@@ -4641,27 +4642,6 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             }
             if (grid[pSquare.value][1] === "grey") { // board squares
                 if (gameSolve === true) {
-                    let suspicious = [];
-                    if (solveLimit === 52){
-                        console.log(suspicious);
-                        
-                    }
-                    if (starsLeftToGet === 1){
-                        console.log("Ten stars achieved: ");
-                        console.log(arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
-                    }
-
-                    if (gameSolveCycle < 30){
-                        suspicious.push(arraySolve[permutation]); 
-                        console.log("Suspicious behaviour!");
-                        console.log("Permutation ID: " + permutation);
-                        solvePermutationReset();
-                        console.log(arraySolve[permutation]);
-                        //alert("Suspicious");
-                        //alert("Suspicious behaviour!");
-                        slotMain();
-                        return;
-                    }
                     slot = slotSelect[0];
                     ctx.fillStyle = "#f1f1f1"; // #d3cfc7 for later
                     ctx.fillRect(grid[(pSquare.value)][3], grid[(pSquare.value)][4], 35, 35);

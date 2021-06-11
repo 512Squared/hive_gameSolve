@@ -1151,7 +1151,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                                 console.log("Total permutations tested = " + totalPermutationsTested)
                                 console.log("Permutation: " + arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
                                 console.log("stars left to get: " + starsLeftToGet);
-                                document.getElementById('hits').innerHTML = '</br>Total permutations tested: ' + totalPermutationsTested + "<br />" + 'Current Perm ID: ' + permutation;
+                                document.getElementById('hits').innerHTML = '</br>Total permutations tested: ' + totalPermutationsTested + "<br />" + 'Current perm ID: ' + permutation;
 
 
                                 abort = true; // code snippet 1
@@ -1357,7 +1357,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                             console.log("Secret function initiated!");
                             playSpeed = speed[2];
                             arraySolve = arraySolve7;
-                            document.getElementById('header').innerHTML = "Wow! You've found a secret function!!</br></br>   Wanna press PLAY?";
+                            document.getElementById('header').innerHTML = "Wow! You've found a secret function!</br></br>   Wanna press PLAY?";
                             console.log("x3 speed selected");
                             fullBoardReset();
                             solveFullReset();

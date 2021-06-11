@@ -1094,23 +1094,34 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 playButton.y > 560 + 58 && // this is the 35 offset for vertical top
                 playButton.y < 560 + 35 + 58 // this is the 35 offest for vertical bottom
             ) {
-                console.log("play button pressed");
-
+                console.log("play button pressed!");
+                
+ 
                 if (running === true) {
                     alert("Game is already running");
                 }
-                if (tenStarWizards === true) {
-                    document.getElementById('hits').innerHTML = 'There is NO solution to this game. But these are the greatest hits - all 453 of the 10-star wizard permutations discovered while searching all 537,824 possible permutations.';   
-                } 
                 running = true;
                 gamePause = false;
                 abort = false;
-                if (oneStep === true) { playOneStep(); }
+                ctx.drawImage(atlas, 210, 0, 35, 35, 352, 560, 35, 35); // grey back tile
+                ctx.drawImage(atlas, 280, 0, 35, 35, 352, 560, 35, 35); // pause off
+                ctx.drawImage(action, 980, 0, 35, 35, 280, 560, 35, 35); // play switched on
+                if (oneStep === true) {
+                    playOneStep();
+                }
                 else {
                     gameLoop();
                     document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
 
-                    //ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35);
+                    ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35); // yin-yang
+
+                    if (tenStarWizards === true) {
+                        document.getElementById('hits').innerHTML = '</br>Sorry! But there are actually NO solutions to this game. Not one! </br></br>But sit back and enjoy watching the 453 permutations that came closest. </br></br>All hail the 10-star Wizards!';   
+                    }
+
+                    if (everyPerm === true) {
+                        document.getElementById('hits').innerHTML = "</br>Okay! You are clever. You've unlocked the permutation tester. </br></br>If you have 17 hours, you can watch all the 537,824  possible permutations being tested to see if any will get all 11 stars</br></br>All hail the Solve Wizard!";   
+                    }
 
 
                 }
@@ -1130,7 +1141,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 function wait() {
                     if (slot === slotSelect[0]) {
                         switch (gamePause) {
-                            case false:
+                            case false: // pause wasn't on
                                 gamePause = true;
                                 ctx.drawImage(action, 1015, 0, 35, 35, 352, 560, 35, 35); // pause on
                                 ctx.drawImage(atlas, 210, 0, 35, 35, 280, 560, 35, 35); // grey back tile
@@ -1140,15 +1151,17 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                                 console.log("Total permutations tested = " + totalPermutationsTested)
                                 console.log("Permutation: " + arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
                                 console.log("stars left to get: " + starsLeftToGet);
-                                document.getElementById('hits').innerHTML = 'Total tested: ' + totalPermutationsTested + "<br />" + 'Current: ' + permutation;
+                                document.getElementById('hits').innerHTML = '</br>Total permutations tested: ' + totalPermutationsTested + "<br />" + 'Current Perm ID: ' + permutation;
 
 
                                 abort = true; // code snippet 1
                                 break;
-                            case true:
+                            case true: // pause was on
                                 gamePause = false;
                                 ctx.drawImage(atlas, 210, 0, 35, 35, 352, 560, 35, 35); // grey back tile
                                 ctx.drawImage(atlas, 280, 0, 35, 35, 352, 560, 35, 35); // pause off
+                                ctx.drawImage(action, 980, 0, 35, 35, 280, 560, 35, 35); // play switched on
+
                                 console.log("Pause ended!");
                                 document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
 
@@ -1251,9 +1264,9 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         everyPerm = true;
                         gameSolve = true;
                         console.log("Game on motherfuckers!");
-                        document.getElementById('header').innerHTML = 'Game on motherfuckers! </br>   Wanna press PLAY?';
+                        document.getElementById('header').innerHTML = "Okay, so you think you're clever! </br></br>   Wanna press PLAY?";
                         console.log(gameSolve);
-                        ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35);
+                        ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35); //speed boxes
                         ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
                         ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
                         console.log("x3 speed selected");
@@ -1274,15 +1287,19 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         }
                         if (tenStarWizards === true) {
                             tenStarWizards = false;
-                            everyPerm = true; 
+                            everyPerm = true;
+                            running = false;
+                            abort = true;
+                            gamePause = true; 
                             arraySolve = [...arraySolve1, ...arraySolve2, ...arraySolve3, ...arraySolve4, ...arraySolve5, ...arraySolve6];
                             document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
                             document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
                             fullBoardReset();
+                            solveFullReset();
                             console.log("Wiped those ten-star wizard wimps");
-                            console.log("Game on motherfuckers!");
-                            document.getElementById('header').innerHTML = 'Game on motherfuckers! </br>   Wanna press PLAY?';
-                            ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35);
+                            console.log("Okay, so you think you're clever!");
+                            document.getElementById('header').innerHTML = "Okay, so you think you're clever! </br></br>   Wanna press PLAY?";
+                            ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35); //speed boxes
                             ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
                             ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
                             console.log("x3 speed selected");
@@ -1305,13 +1322,13 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     case false:
                         tenStarWizards = true;
                         gameSolve = true;
-                        console.log("Yippee - you found a secret function!");
+                        console.log("Wow! You've found a secret function!");
                         playSpeed = speed[2];
                         arraySolve = arraySolve7;
-                        document.getElementById('header').innerHTML = 'Yippee - you found a secret function</br>   Wanna press PLAY?';
+                        document.getElementById('header').innerHTML = "Wow! You've found a secret function</br></br>   Wanna press PLAY?";
                         //drawBoard();
                         //drawFunctionSlots();
-                        ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35);
+                        ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35); //speed boxes
                         ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
                         ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
                         console.log("x3 speed selected");
@@ -1329,24 +1346,25 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         break;
                         }
                         if (everyPerm = true) {
+                            abort = true;
                             everyPerm = false;
+                            running = false;
+                            gamePause = true;
                             tenStarWizards = true;
                             document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
                             document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
                             console.log("Expunged those everyPerm prima donnas");
-                            fullBoardReset();
-                            console.log("This is as good as it gets!");
+                            console.log("Secret function initiated!");
                             playSpeed = speed[2];
                             arraySolve = arraySolve7;
-                            document.getElementById('header').innerHTML = 'This is as good as it gets!</br>   Wanna press PLAY?';
-                            //drawBoard();
-                            //drawFunctionSlots();
-                            ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35);
+                            document.getElementById('header').innerHTML = "Wow! You've found a secret function!</br></br>   Wanna press PLAY?";
+                            ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35); //speed boxes
                             ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
                             ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
                             console.log("x3 speed selected");
+                            fullBoardReset();
+                            solveFullReset();
                             break;
-
                         }
                 }
             }
@@ -1355,7 +1373,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
         // pause keyboard binding: p
 
         document.onkeydown = function (f) { // P key on keyboard pauses game
-            if (f.keyCode == 80) {
+            if (f.key == 80) {
                 console.log("Yep, pause button was pressed");
                 running = true;
                 console.log(running);
@@ -5297,6 +5315,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             console.log("New permutation ID: " + permutation);
             console.log("New Permutation = " + arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
             drawBoard();
+            ctx.drawImage(action, 980, 0, 35, 35, 280, 560, 35, 35); // play switched on
             slotMain();
         }
         function solveFullReset() {

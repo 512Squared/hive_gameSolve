@@ -45,6 +45,8 @@ let gOAT = 1;
 let solveLimit = 537824; // 537824
 let stackFiltering = false;
 let combinationGenerator = false;
+let tenStarWizards = false;
+let everyPerm = false;
 
 
 // BOARD GRID
@@ -1103,10 +1105,10 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 else {
                     gameLoop();
                     document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-   
+
                     //ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35);
-            
-                    
+
+
                 }
 
             }
@@ -1242,6 +1244,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                 switch (gameSolve) {
                     case false:
+                        everyPerm = true;
                         gameSolve = true;
                         console.log("Game on motherfuckers!");
                         document.getElementById('header').innerHTML = 'Game on motherfuckers! </br>   Wanna press PLAY?';
@@ -1251,10 +1254,11 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
                         console.log("x3 speed selected");
                         playSpeed = speed[2];
-
                         break;
 
                     case true:
+                        if (tenStarWizards === false) {
+                        everyPerm = false;
                         gameSolve = false;
                         console.log("Maybe next time, Baby Jane!")
                         console.log(gameSolve);
@@ -1263,6 +1267,24 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35);
                         fullBoardReset();
                         break;
+                        }
+                        if (tenStarWizards === true) {
+                            tenStarWizards = false;
+                            everyPerm = true; 
+                            arraySolve = [...arraySolve1, ...arraySolve2, ...arraySolve3, ...arraySolve4, ...arraySolve5, ...arraySolve6];
+                            document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                            document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                            fullBoardReset();
+                            console.log("Wiped those ten-star wizard wimps");
+                            console.log("Game on motherfuckers!");
+                            document.getElementById('header').innerHTML = 'Game on motherfuckers! </br>   Wanna press PLAY?';
+                            ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35);
+                            ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
+                            ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
+                            console.log("x3 speed selected");
+                            playSpeed = speed[2];
+                            break;
+                        }
                 }
             }
         });
@@ -1277,9 +1299,10 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             ) {
                 switch (gameSolve) {
                     case false:
+                        tenStarWizards = true;
                         gameSolve = true;
                         console.log("This is as good as it gets!");
-                        playSpeed = playSpeed[2];
+                        playSpeed = speed[2];
                         arraySolve = arraySolve7;
                         document.getElementById('header').innerHTML = 'This is as good as it gets!</br>   Wanna press PLAY?';
                         //drawBoard();
@@ -1291,15 +1314,36 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         break;
 
                     case true:
+                        if (everyPerm === false) {
+                        tenStarWizards = false;
                         gameSolve = false;
                         console.log("Ain't no sunshine when she's gone!")
                         arraySolve = [...arraySolve1, ...arraySolve2, ...arraySolve3, ...arraySolve4, ...arraySolve5, ...arraySolve6];
                         document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
                         document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-                        drawBoard();
-                        drawFunctionSlots();
                         fullBoardReset();
                         break;
+                        }
+                        if (everyPerm = true) {
+                            everyPerm = false;
+                            tenStarWizards = true;
+                            document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                            document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                            console.log("Expunged those everyPerm prima donnas");
+                            fullBoardReset();
+                            console.log("This is as good as it gets!");
+                            playSpeed = speed[2];
+                            arraySolve = arraySolve7;
+                            document.getElementById('header').innerHTML = 'This is as good as it gets!</br>   Wanna press PLAY?';
+                            //drawBoard();
+                            //drawFunctionSlots();
+                            ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35);
+                            ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
+                            ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
+                            console.log("x3 speed selected");
+                            break;
+
+                        }
                 }
             }
         });
@@ -4621,7 +4665,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 return;
             }
         }
-        
+
         // gameEngineslotRun functions (slotMain calls them individually)
 
         function slotMain() { // main game loop - calls slotRuns 1-6
@@ -5013,8 +5057,8 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
             let stageFright = arraySolve[permutation].includes("0,0") || arraySolve[permutation].includes("3,0");
 
-            let hasLegs = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("0,3") || arraySolve[permutation].includes("0,0"); 
-                        
+            let hasLegs = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("0,3") || arraySolve[permutation].includes("0,0");
+
             let hasGreen = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("4,1") || arraySolve[permutation].includes("0,3");
 
             let hasTurns = arraySolve[permutation].includes("1,0") || arraySolve[permutation].includes("1,1") || arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,0") || arraySolve[permutation].includes("2,1") || arraySolve[permutation].includes("2,2");
@@ -5030,7 +5074,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
 
                 if (gameSolve === true) {
-                    
+
                     if (gameSolveCycle > 70) { //This was to break out of a loop if it doesn't find a solution
                         solvePermutationReset();
                     }
@@ -5074,7 +5118,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                             console.log("Picnic on the blue square!");
                             console.log(arraySolve[permutation]);
                             solvePermutationReset();
-                            return; 
+                            return;
                         }
                     }
                     if (hasGreen === true) {
@@ -5082,7 +5126,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                             console.log("Loopy Lou on the Lawn!");
                             console.log(arraySolve[permutation]);
                             solvePermutationReset();
-                            return; 
+                            return;
                         }
                     }
 
@@ -5185,7 +5229,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             ctx.fillText("Execution", 282, 550);
             ctx.fillText("Speed", 137, 550);
             ctx.fillText("Functions", 647, 250);
-            ctx.fillText("Commands", 888, 178); 
+            ctx.fillText("Commands", 888, 178);
             drawBoard();
             drawFunctionSlots();
 

@@ -1116,11 +1116,11 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35); // yin-yang
 
                     if (tenStarWizards === true) {
-                        document.getElementById('hits').innerHTML = '</br>Sorry! But there are actually NO solutions to this game. Not one! </br></br>But sit back and enjoy watching the 453 permutations that came closest. </br></br>All hail the 10-star Wizards!';   
+                        document.getElementById('hits').innerHTML = '</br>Sorry to disappoint! But there are actually NO solutions to this game. Not a single one! </br></br>But sit back and enjoy watching the 453 permutations that came closest. </br></br>All hail the 10-star Wizards!';   
                     }
 
                     if (everyPerm === true) {
-                        document.getElementById('hits').innerHTML = "</br>Okay! You are clever. You've unlocked the permutation tester. </br></br>If you have 17 hours, you can watch all the 537,824  possible permutations being tested to see if any will get all 11 stars</br></br>All hail the Solve Wizard!";   
+                        document.getElementById('hits').innerHTML = "</br>Okay! You are clever. You've unlocked the permutation tester. </br></br>If you have 17 hours, you can watch all 537,824  possible permutations<sup>†</sup> being tested to see if any will get all 11 stars</br></br>All hail the Solve Wizard!</br></br>† Math for calculating the # of permutations: </br>(x<sub>1</sub>+x<sub>2</sub>+...+x<sub>n</sub>=k)";   
                     }
 
 

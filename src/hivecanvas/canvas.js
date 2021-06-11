@@ -599,7 +599,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
 
 
-        // EVENT LISTENERS & BUTTON BEHAVIOURS
+        // EVENT LISTENERS & BUTTON BEHAVIOURS 
 
         // switching between slots - set as active
         canvas.addEventListener('click', function (event) {
@@ -1325,7 +1325,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         console.log("Wow! You've found a secret function!");
                         playSpeed = speed[2];
                         arraySolve = arraySolve7;
-                        document.getElementById('header').innerHTML = "Wow! You've found a secret function</br></br>   Wanna press PLAY?";
+                        document.getElementById('header').innerHTML = "Wow! You've found a secret function!</br></br>   Wanna press PLAY?";
                         //drawBoard();
                         //drawFunctionSlots();
                         ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35); //speed boxes
@@ -1357,13 +1357,13 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                             console.log("Secret function initiated!");
                             playSpeed = speed[2];
                             arraySolve = arraySolve7;
-                            document.getElementById('header').innerHTML = "Wow! You've found a secret function!</br></br>   Wanna press PLAY?";
-                            ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35); //speed boxes
-                            ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
-                            ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
+                            document.getElementById('header').innerHTML = "Wow! You've found a secret function!!</br></br>   Wanna press PLAY?";
                             console.log("x3 speed selected");
                             fullBoardReset();
                             solveFullReset();
+                            ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35); //speed boxes
+                            ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
+                            ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
                             break;
                         }
                 }

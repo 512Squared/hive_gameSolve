@@ -10,6 +10,7 @@
 
 // Hello Chakra Blaster - welcome to your Hive_solve branch.
 
+
 import { arraySolve1 } from "./modules/array1.mjs";
 import { arraySolve2 } from "./modules/array2.mjs";
 import { arraySolve3 } from "./modules/array3.mjs";
@@ -43,12 +44,11 @@ let permStart = 0;
 let permutation = permStart;
 let totalPermutationsTested = 0;
 let gOAT = 1;
-let solveLimit = arraySolve.length; // 537824
 let stackFiltering = false;
 let combinationGenerator = false;
 let tenStarWizards = false;
 let everyPerm = false;
-let tenStarWizarLimit = 24;
+
 
 
 // BOARD GRID
@@ -1117,11 +1117,11 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35); // yin-yang
 
                     if (tenStarWizards === true) {
-                        document.getElementById('hits').innerHTML = '</br>Sorry to disappoint! But there are actually NO solutions to this game. Not a single one! </br></br>But sit back and enjoy watching the 37 permutations that came closest. </br></br>All hail the 10-star Wizards!';   
+                        document.getElementById('hits').innerHTML = '</br>Sorry to disappoint, but there are actually ZERO solutions to this game. Not a single one! </br></br>But sit back and enjoy watching the 25 permutations that came closest. </br></br>All ail the 10-star Wizards!';   
                     }
 
                     if (everyPerm === true) {
-                        document.getElementById('hits').innerHTML = "</br>Okay! You are clever. You've unlocked the permutation tester. </br></br>If you have ~17 hours, you can watch all 537,824  possible permutations<sup>†</sup> being tested to see if any will get all 11 stars</br></br>All hail the Solve Wizard!</br></br>† Math for calculating the # of permutations: </br>(x<sub>1</sub>+x<sub>2</sub>+...+x<sub>n</sub>=k)";   
+                        document.getElementById('hits').innerHTML = "</br>Okay! You are clever. You've unlocked the permutation tester. </br></br>If you have ~17 hours, you can watch all 537,824 permutations<sup>†</sup> being tested to see if any will get all 11 stars</br></br>All hail the Solve Wizard!</br></br>† Math for calculating the # of permutations: </br>(x<sub>1</sub>+x<sub>2</sub>+...+x<sub>n</sub>=k)";   
                     }
 
 
@@ -5098,7 +5098,13 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
 
                 if (gameSolve === true) {
-
+                    if (permutation == arraySolve.length - 1) {
+                        gamePause = true;
+                        running = false;
+                        gameSolve = false;
+                        alert("The gameSolve algorithm has completed");
+                        return;
+                    }
                     if (gameSolveCycle > 70) { //This was to break out of a loop if it doesn't find a solution
                         solvePermutationReset();
                     }
@@ -5285,14 +5291,6 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
         // Run gameEngine (play or one-step eventlistener press); order: changeDirection, colourChange, movePlayer
         function solvePermutationReset() {
-            if (permutation === solveLimit) {
-                gamePause = true;
-                running = false;
-                document.getElementById('header').innerHTML = 'Greatest Hits - 10-star wizards' + "\n";
-                alert("The gameSolve algorithm has completed");
-                gameSolve = false;
-                return;
-            }
             slotAnimClear();
             permutation += 1;
             totalPermutationsTested += 1;

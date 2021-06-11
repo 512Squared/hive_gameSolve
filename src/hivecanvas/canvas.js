@@ -39,7 +39,8 @@ let gamePause = false;
 let oneStep = false;
 let gameSolve = false;
 let gameSolveCycle = 1;
-let permutation = 0;
+let permStart = 0;
+let permutation = permStart;
 let totalPermutationsTested = 0;
 let gOAT = 1;
 let solveLimit = 537824; // 537824
@@ -5146,7 +5147,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             grid = JSON.parse(JSON.stringify(grid2));
             slotAnimClear();
             gamePause = false;
-            permutation = 0;
+            permutation = permStart;
             totalPermutationsTested = 0;
             slot1.boxActive = true;
             slot2.boxActive = false;
@@ -5240,6 +5241,8 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             console.log("Grid reset successfully initiated");
             gamePause = false;
             gameSolveCycle = 0;
+            permutation = permStart;
+            totalPermutationsTested = 0;
             slotAnimClear();
             slot = slotSelect[0];
             running = false;
@@ -5299,7 +5302,8 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             slot = slotSelect[0];
             running = false;
             abort = true;
-            permutation = 0;
+            permutation = permStart;
+            totalPermutationsTested = 0;
             gameSolveCycle = 0;
             slot = slotSelect[0];
             grid = JSON.parse(JSON.stringify(grid2));

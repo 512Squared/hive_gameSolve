@@ -16,10 +16,11 @@ import { arraySolve3 } from "./modules/array3.mjs";
 import { arraySolve4 } from "./modules/array4.mjs";
 import { arraySolve5 } from "./modules/array5.mjs";
 import { arraySolve6 } from "./modules/array6.mjs";
+import { arraySolve7 } from "./modules/array7.mjs";
 //import { arrayTest as arraySolve} from "./modules/arrayT.mjs";
 
 
-const arraySolve = [...arraySolve1, ...arraySolve2, ...arraySolve3, ...arraySolve4, ...arraySolve5, ...arraySolve6]
+let arraySolve = [...arraySolve1, ...arraySolve2, ...arraySolve3, ...arraySolve4, ...arraySolve5, ...arraySolve6]
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -30,7 +31,7 @@ let ctx = document.getElementById('canvas').getContext('2d');
 let arrowDirection = "arrowRight";
 let moveForward = "moveRight";
 let starsLeftToGet = 11;
-let speed = [550, 100, 0.00001]
+let speed = [350, 50, 0.00001]
 let playSpeed = speed[0];
 let running = false;
 let abort = false;
@@ -44,6 +45,7 @@ let gOAT = 1;
 let solveLimit = 537824; // 537824
 let stackFiltering = false;
 let combinationGenerator = false;
+
 
 // BOARD GRID
 
@@ -1090,9 +1092,10 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 playButton.y < 560 + 35 + 58 // this is the 35 offest for vertical bottom
             ) {
                 console.log("play button pressed");
-                ctx.drawImage(action, 980, 0, 35, 35, 280, 560, 35, 35); // play on
-                ctx.drawImage(atlas, 210, 0, 35, 35, 352, 560, 35, 35); // grey back tile
-                ctx.drawImage(atlas, 280, 0, 35, 35, 352, 560, 35, 35); // pause off
+
+                if (running === true) {
+                    alert("Game is already running");
+                }
                 running = true;
                 gamePause = false;
                 abort = false;
@@ -1100,7 +1103,26 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 else {
                     gameLoop();
                     document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+   
+                    ctx.drawImage(back, 0, 0, 480, 700, 550, 0, 480, 700); 
+    
+                    ctx.fillStyle = "#59534E";
+                    ctx.fillText("Execution", 282, 550);
+                    ctx.fillText("Speed", 137, 550);
+                    ctx.fillText("Functions", 647, 250);
+                    ctx.fillText("Commands", 888, 178);
+                    ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35);
+
+
+                    // pause off
+                    //ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35);
+            
+                    if (gameSolve === false){drawBoard();
+                    drawFunctionSlots();
+                    }
+                    
                 }
+
             }
         });
 
@@ -1243,6 +1265,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
                         console.log("x3 speed selected");
                         playSpeed = speed[2];
+
                         break;
 
                     case true:
@@ -1250,6 +1273,46 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         console.log("Maybe next time, Baby Jane!")
                         console.log(gameSolve);
                         document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                        document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                        ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35);
+                        fullBoardReset();
+                        break;
+                }
+            }
+        });
+
+        // 10-star wizards
+        canvas.addEventListener('click', function (wizards) {
+            if (
+                wizards.x > 148 + 35 && // this is the 35 offset horiz left
+                wizards.x < 148 + 250 + 35 && // this is the 35 offest horiz right
+                wizards.y > 120 && // this is the 35 offset for vertical top
+                wizards.y < 100 + 60 // this is the 35 offest for vertical bottom
+            ) {
+                switch (gameSolve) {
+                    case false:
+                        gameSolve = true;
+                        console.log("This is as good as it gets!");
+                        playSpeed = playSpeed[2];
+                        arraySolve = arraySolve7;
+                        document.getElementById('header').innerHTML = 'This is as good as it gets!</br>   Wanna press PLAY?';
+                        drawBoard();
+                        drawFunctionSlots();
+                        ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35);
+                        ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
+                        ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
+                        console.log("x3 speed selected");
+                        break;
+
+                    case true:
+                        gameSolve = false;
+                        console.log("Ain't no sunshine when she's gone!")
+                        arraySolve = [...arraySolve1, ...arraySolve2, ...arraySolve3, ...arraySolve4, ...arraySolve5, ...arraySolve6];
+                        document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                        document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                        drawBoard();
+                        drawFunctionSlots();
+                        fullBoardReset();
                         break;
                 }
             }
@@ -1267,7 +1330,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
         // select box keyboard binding: keyboard keys a & d move between slots
         document.onkeydown = function (e) {
-            switch (e.keyCode) {
+            switch (e.key) {
                 case 65:
                     if (slot1.boxActive === true) {
                         alert('You are at the beginning - cannot go left');
@@ -4572,11 +4635,8 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 return;
             }
         }
-
+        
         // gameEngineslotRun functions (slotMain calls them individually)
-
-
-
 
         function slotMain() { // main game loop - calls slotRuns 1-6
 
@@ -4967,13 +5027,13 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
             let stageFright = arraySolve[permutation].includes("0,0") || arraySolve[permutation].includes("3,0");
 
-            let noForward = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("0,3") || arraySolve[permutation].includes("0,0"); 
+            let hasLegs = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("0,3") || arraySolve[permutation].includes("0,0"); 
                         
-            let noGreenNoPaint = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("4,1") || arraySolve[permutation].includes("0,3");
+            let hasGreen = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("4,1") || arraySolve[permutation].includes("0,3");
 
-            let noTurns = arraySolve[permutation].includes("1,0") || arraySolve[permutation].includes("1,1") || arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,0") || arraySolve[permutation].includes("2,1") || arraySolve[permutation].includes("2,2");
+            let hasTurns = arraySolve[permutation].includes("1,0") || arraySolve[permutation].includes("1,1") || arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,0") || arraySolve[permutation].includes("2,1") || arraySolve[permutation].includes("2,2");
 
-            let blueCorner = arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,2") || arraySolve[permutation].includes("3,2") || arraySolve[permutation].includes("4,2");
+            let blueTurns = arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,2") || arraySolve[permutation].includes("3,2") || arraySolve[permutation].includes("4,2");
 
 
             for (let i = 0; i < 1; i++) {
@@ -4999,44 +5059,47 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         solvePermutationReset();
                         return;
                     }
-                    if (noForward !== true) {
+                    if (hasLegs !== true) {
                         console.log("Got no legs and no zippy wheelchair!");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
                     }
-                    if (noGreenNoPaint !== true) {
+                    if (hasGreen !== true) {
                         console.log("No green forward & no fucking plan!");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
                     }
-                    if (noTurns !== true) {
+                    if (hasTurns !== true) {
                         console.log("Can't turn a fucking corner!");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
                     }
-                    if (blueCorner !== true) {
+                    if (blueTurns !== true) {
                         console.log("Picnic on the blue square!");
                         console.log(arraySolve[permutation]);
                         solvePermutationReset();
                         return;
                     }
-
-                    if (noGreenNoPaint === true) {
-                        if (arraySolve[permutation].includes("0,1") === false) {
-                            console.log("Let's all have a game of paint ball!");
+                    if (blueTurns === true) {
+                        if (arraySolve[permutation].includes("0,2") === false) {
+                            console.log("Picnic on the blue square!");
                             console.log(arraySolve[permutation]);
                             solvePermutationReset();
                             return; 
                         }
                     }
-                    if (pSquare.value === 18 && gameSolveCycle === 10) {
-                        console.log("Locked in the corner - reset initiated");
-                        solvePermutationReset();
-                        return;
+                    if (hasGreen === true) {
+                        if (arraySolve[permutation].includes("1,1") === true) {
+                            console.log("Loopy Lou on the Lawn!");
+                            console.log(arraySolve[permutation]);
+                            solvePermutationReset();
+                            return; 
+                        }
                     }
+
                 }
                 slotMain();
 

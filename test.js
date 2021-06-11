@@ -30,30 +30,30 @@ gameLoop();
 
 let stageFright = arraySolve[permutation].includes("0,0") || arraySolve[permutation].includes("3,0");
 
-let noForward = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("0,2") || arraySolve[permutation].includes("0,3") || arraySolve[permutation].includes("0,0"); 
+let hasLegs = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("0,2") || arraySolve[permutation].includes("0,3") || arraySolve[permutation].includes("0,0"); 
             
-let noGreenNoPaint = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("4,1") || arraySolve[permutation].includes("0,3");
+let hasGreen = arraySolve[permutation].includes("0,1") || arraySolve[permutation].includes("4,1") || arraySolve[permutation].includes("0,3");
 
-let noTurns = arraySolve[permutation].includes("1,0") || arraySolve[permutation].includes("1,1") || arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,0") || arraySolve[permutation].includes("2,1") || arraySolve[permutation].includes("2,2");
+let hasTurns = arraySolve[permutation].includes("1,0") || arraySolve[permutation].includes("1,1") || arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,0") || arraySolve[permutation].includes("2,1") || arraySolve[permutation].includes("2,2");
 
-let blueCorner = arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,2") || arraySolve[permutation].includes("3,2") || arraySolve[permutation].includes("4,2");
+let blueTurns = arraySolve[permutation].includes("1,2") || arraySolve[permutation].includes("2,2") || arraySolve[permutation].includes("3,2") || arraySolve[permutation].includes("4,2");
 
 stageFright - "can't get it up for the game!"
 !"Forward+Orange"
 !"GreenPen+Orange"
 
-noForward - "got no legs and no zippy wheelchair!"
+hasLegs - "got no legs and no zippy wheelchair!"
 !"Forward+Green"
 !"Forward+Grey"
 !"Forward+Orange" 
 
-noGreenNoPaint - "no green forward and no fucking plan!"
+hasGreen - "no green forward and no fucking plan!"
 !"Forward+Green"
 !"OrangePen+Green"
 !"Forward+Grey"
 
 
-NoTurns - "can't turn a fucking corner!"
+hasTurns - "can't turn a fucking corner!"
 
 !"TurnLeft+Orange"
 !"TurnLeft+Green"
@@ -62,8 +62,22 @@ NoTurns - "can't turn a fucking corner!"
 !"TurnRight+Green"
 !"TurnRight+Blue"
 
-blueCorner - "picnic on the blue square!"
+blueTurns - "picnic on the blue square!"
 !"TurnLeft+Blue"
 !"TurnRight+Blue"
 !"GreenPen+Blue"
 !"OrangePen+Blue"
+
+"Loopy Lou on the lawn!"
+
+LoopyLou
+"Forward+Green"
+"OrangePen+Green"
+"Forward+Grey"
+    but
+"TurnLeft+Green" is also true. 
+//If this is true, it's because it's looping. Otherwise, it would go off the board already. 
+
+/**I
+ *  had a @param "Let's all have a game of paint ball!", but I've not quite figured out what i was doing with it. 
+*/ 

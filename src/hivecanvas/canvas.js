@@ -5147,6 +5147,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
             slotAnimClear();
             gamePause = false;
             permutation = 0;
+            totalPermutationsTested = 0;
             slot1.boxActive = true;
             slot2.boxActive = false;
             slot3.boxActive = false;

@@ -1118,7 +1118,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35); // yin-yang
 
                     if (tenStarWizards === true) {
-                        document.getElementById('hits').innerHTML = '</br>Sorry to disappoint, but there are actually ZERO solutions to this game. Not a single one! Nada. No rainbows and unicorns. Just top-level head scratching!</br></br>This particular game board was probably chosen by Hive Helsinki to keep testers occupied at the end of the entrance test, until the 2 hours were up. Or maybe my solve algorithm has a flaw &#128522;</br></br>But feel free to sit back and watch the 25 permutations that came closest. Many are the same, but there are a couple that take a quite different route.</br></br>All hail the 10-star Wizards!';
+                        document.getElementById('hits').innerHTML = '</br>Sorry to disappoint, but there are actually ZERO solutions to this game. Not a single one! Nada. No magic breakthroughts - no rainbows and unicorns. Just top-level head scratching!</br></br>This particular game board was probably chosen by Hive Helsinki to keep testers occupied at the end of the entrance test, until the 2 hours were up. Or maybe my solve algorithm has a flaw &#128522;</br></br>But feel free to sit back and watch the 25 permutations that came closest. Many are the same, but there are a couple that take a quite different route.</br></br>All hail the 10-star Wizards!';
                     }
 
                     if (everyPerm === true) {

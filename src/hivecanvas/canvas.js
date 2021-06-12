@@ -1272,12 +1272,12 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         document.getElementById('header').innerHTML = "Okay, so you think you're clever! </br></br>   Wanna press PLAY?";
                         console.log(gameSolve);
                         console.log("x1 speed selected");
+                        fullBoardReset();
+                        solveFullReset();
                         ctx.drawImage(action, 665, 0, 35, 35, 136, 560, 35, 35);
                         ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
                         ctx.drawImage(action, 770, 0, 35, 35, 208, 560, 35, 35);
                         playSpeed = speed[0];
-                        fullBoardReset();
-                        solveFullReset();
                         break;
 
                     case true:
@@ -1289,7 +1289,12 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                             document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
                             document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
                             ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35);
+                            solveFullReset();
                             fullBoardReset();
+                            ctx.drawImage(action, 665, 0, 35, 35, 136, 560, 35, 35);
+                            ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
+                            ctx.drawImage(action, 770, 0, 35, 35, 208, 560, 35, 35);
+                            playSpeed = speed[0];
                             break;
                         }
                         if (tenStarWizards === true) {
@@ -1351,7 +1356,12 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                             arraySolve = [...arraySolve1, ...arraySolve2, ...arraySolve3, ...arraySolve4, ...arraySolve5, ...arraySolve6];
                             document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
                             document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                            solveFullReset();
                             fullBoardReset();
+                            ctx.drawImage(action, 665, 0, 35, 35, 136, 560, 35, 35);
+                            ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
+                            ctx.drawImage(action, 770, 0, 35, 35, 208, 560, 35, 35);
+                            playSpeed = speed[0];
                             break;
                         }
                         if (everyPerm = true) {

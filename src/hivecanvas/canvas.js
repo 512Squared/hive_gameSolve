@@ -1097,8 +1097,8 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 playButton.y < 560 + 35 + 58 // this is the 35 offest for vertical bottom
             ) {
                 console.log("play button pressed!");
-                
- 
+
+
                 if (running === true) {
                     alert("Game is already running");
                 }
@@ -1118,11 +1118,11 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35); // yin-yang
 
                     if (tenStarWizards === true) {
-                        document.getElementById('hits').innerHTML = '</br>Sorry to disappoint, but there are actually ZERO solutions to this game. Not a single one! </br></br>But sit back and enjoy watching the 25 permutations that came closest. </br></br>All ail the 10-star Wizards!';   
+                        document.getElementById('hits').innerHTML = '</br>Sorry to disappoint, but there are actually ZERO solutions to this game. Not a single one! </br></br>But sit back and watch the 25 permutations that came closest. </br></br>All hail the 10-star Wizards!';
                     }
 
                     if (everyPerm === true) {
-                        document.getElementById('hits').innerHTML = "</br>Okay! You are clever. You've unlocked the permutation tester. </br></br>If you have ~17 hours, you can watch all 537,824 permutations<sup>†</sup> being tested to see if any will get all 11 stars</br></br>All hail the Solve Wizard!</br></br>† Math for calculating the # of permutations: </br>(x<sub>1</sub>+x<sub>2</sub>+...+x<sub>n</sub>=k)";   
+                        document.getElementById('hits').innerHTML = "</br>Okay! You are clever. You've unlocked the permutation solver. </br></br>If you have ~1 year, you can watch all 537,824 permutations<sup>†</sup> being tested at x1 speed</br></br>If you click x3 speed, you will engage a solve algorithm that catches the obvious fails and reduces the time for testing down to ~17 hours &#128522;. </br></br>Every permutation is given 70 cycles to find a solution, allowing the solver to break out of any loops.</br></br>Pause will reveal the number of permutations already completed.</br></br>If the permutation tester finds a solution, it will stop testing and announce the winning permutation!</br></br>All hail the Solve Wizard!</br></br>† Equation for calculating the number of permutations: </br>(x<sub>1</sub>+x<sub>2</sub>+...+x<sub>n</sub>=k)";
                     }
 
 
@@ -1153,7 +1153,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                                 console.log("Total permutations tested = " + totalPermutationsTested)
                                 console.log("Permutation: " + arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
                                 console.log("stars left to get: " + starsLeftToGet);
-                                document.getElementById('hits').innerHTML = '</br>Total permutations tested: ' + totalPermutationsTested + "<br />" + 'Current perm ID: ' + permutation;
+                                document.getElementById('hits').innerHTML = '<br />Total permutations completed: ' + totalPermutationsTested + "</br></br>I wonder what other surprises are hidden on the game board!";
 
 
                                 abort = true; // code snippet 1
@@ -1249,6 +1249,9 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                 console.log("x3 speed selected");
                 playSpeed = speed[2];
                 console.log(playSpeed);
+                if (gameSolve === true) {
+                    solveAlgorithm = true;
+                }
             }
         });
 
@@ -1268,31 +1271,32 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         console.log("Game on motherfuckers!");
                         document.getElementById('header').innerHTML = "Okay, so you think you're clever! </br></br>   Wanna press PLAY?";
                         console.log(gameSolve);
-                        ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35); //speed boxes
+                        console.log("x1 speed selected");
+                        ctx.drawImage(action, 665, 0, 35, 35, 136, 560, 35, 35);
                         ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
-                        ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
-                        console.log("x3 speed selected");
-                        playSpeed = speed[2];
+                        ctx.drawImage(action, 770, 0, 35, 35, 208, 560, 35, 35);
+
+                        playSpeed = speed[0];
                         break;
 
                     case true:
                         if (tenStarWizards === false) {
-                        everyPerm = false;
-                        gameSolve = false;
-                        console.log("Maybe next time, Baby Jane!")
-                        console.log(gameSolve);
-                        document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-                        document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-                        ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35);
-                        fullBoardReset();
-                        break;
+                            everyPerm = false;
+                            gameSolve = false;
+                            console.log("Maybe next time, Baby Jane!")
+                            console.log(gameSolve);
+                            document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                            document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                            ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35);
+                            fullBoardReset();
+                            break;
                         }
                         if (tenStarWizards === true) {
                             tenStarWizards = false;
                             everyPerm = true;
                             running = false;
                             abort = true;
-                            gamePause = true; 
+                            gamePause = true;
                             arraySolve = [...arraySolve1, ...arraySolve2, ...arraySolve3, ...arraySolve4, ...arraySolve5, ...arraySolve6];
                             document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
                             document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
@@ -1301,11 +1305,11 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                             console.log("Wiped those ten-star wizard wimps");
                             console.log("Okay, so you think you're clever!");
                             document.getElementById('header').innerHTML = "Okay, so you think you're clever! </br></br>   Wanna press PLAY?";
-                            ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35); //speed boxes
+                            ctx.drawImage(action, 665, 0, 35, 35, 136, 560, 35, 35);
                             ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
-                            ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);
-                            console.log("x3 speed selected");
-                            playSpeed = speed[2];
+                            ctx.drawImage(action, 770, 0, 35, 35, 208, 560, 35, 35);
+    
+                            playSpeed = speed[0];
                             break;
                         }
                 }
@@ -1338,14 +1342,14 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
 
                     case true:
                         if (everyPerm === false) {
-                        tenStarWizards = false;
-                        gameSolve = false;
-                        console.log("Ain't no sunshine when she's gone!")
-                        arraySolve = [...arraySolve1, ...arraySolve2, ...arraySolve3, ...arraySolve4, ...arraySolve5, ...arraySolve6];
-                        document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-                        document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-                        fullBoardReset();
-                        break;
+                            tenStarWizards = false;
+                            gameSolve = false;
+                            console.log("Ain't no sunshine when she's gone!")
+                            arraySolve = [...arraySolve1, ...arraySolve2, ...arraySolve3, ...arraySolve4, ...arraySolve5, ...arraySolve6];
+                            document.getElementById('header').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                            document.getElementById('hits').innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                            fullBoardReset();
+                            break;
                         }
                         if (everyPerm = true) {
                             abort = true;

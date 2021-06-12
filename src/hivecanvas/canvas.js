@@ -1275,8 +1275,9 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         ctx.drawImage(action, 665, 0, 35, 35, 136, 560, 35, 35);
                         ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
                         ctx.drawImage(action, 770, 0, 35, 35, 208, 560, 35, 35);
-
                         playSpeed = speed[0];
+                        fullBoardReset();
+                        solveFullReset();
                         break;
 
                     case true:
@@ -1334,6 +1335,8 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                         document.getElementById('header').innerHTML = "Wow! You've found a secret function!</br></br>   Wanna press PLAY?";
                         //drawBoard();
                         //drawFunctionSlots();
+                        fullBoardReset();
+                        solveFullReset();
                         ctx.drawImage(action, 630, 0, 35, 35, 136, 560, 35, 35); //speed boxes
                         ctx.drawImage(action, 700, 0, 35, 35, 172, 560, 35, 35);
                         ctx.drawImage(action, 805, 0, 35, 35, 208, 560, 35, 35);

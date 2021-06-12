@@ -48,6 +48,7 @@ let stackFiltering = false;
 let combinationGenerator = false;
 let tenStarWizards = false;
 let everyPerm = false;
+let solveAlgorithm = false;
 
 
 
@@ -5108,58 +5109,59 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     if (gameSolveCycle > 70) { //This was to break out of a loop if it doesn't find a solution
                         solvePermutationReset();
                     }
-                    if (starsLeftToGet === gOAT) {
-                        if (greatestHits.includes(arraySolve[permutation]) === false) {
-                            greatestHits.push(arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
+                    if (solveAlgorithm === true) {
+                        if (starsLeftToGet === gOAT) {
+                            if (greatestHits.includes(arraySolve[permutation]) === false) {
+                                greatestHits.push(arraySolve[permutation][0] + " | " + arraySolve[permutation][1] + " | " + arraySolve[permutation][2] + " | " + arraySolve[permutation][3] + " | " + arraySolve[permutation][4]);
+                            }
                         }
-                    }
-                    if (stageFright !== true) {
-                        console.log("Can't get it up for the game!");
-                        console.log(arraySolve[permutation]);
-                        solvePermutationReset();
-                        return;
-                    }
-                    if (hasLegs !== true) {
-                        console.log("Got no legs and no zippy wheelchair!");
-                        console.log(arraySolve[permutation]);
-                        solvePermutationReset();
-                        return;
-                    }
-                    if (hasGreen !== true) {
-                        console.log("No green forward & no fucking plan!");
-                        console.log(arraySolve[permutation]);
-                        solvePermutationReset();
-                        return;
-                    }
-                    if (hasTurns !== true) {
-                        console.log("Can't turn a fucking corner!");
-                        console.log(arraySolve[permutation]);
-                        solvePermutationReset();
-                        return;
-                    }
-                    if (blueTurns !== true) {
-                        console.log("Picnic on the blue square!");
-                        console.log(arraySolve[permutation]);
-                        solvePermutationReset();
-                        return;
-                    }
-                    if (blueTurns === true) {
-                        if (arraySolve[permutation].includes("0,2") === false) {
+                        if (stageFright !== true) {
+                            console.log("Can't get it up for the game!");
+                            console.log(arraySolve[permutation]);
+                            solvePermutationReset();
+                            return;
+                        }
+                        if (hasLegs !== true) {
+                            console.log("Got no legs and no zippy wheelchair!");
+                            console.log(arraySolve[permutation]);
+                            solvePermutationReset();
+                            return;
+                        }
+                        if (hasGreen !== true) {
+                            console.log("No green forward & no fucking plan!");
+                            console.log(arraySolve[permutation]);
+                            solvePermutationReset();
+                            return;
+                        }
+                        if (hasTurns !== true) {
+                            console.log("Can't turn a fucking corner!");
+                            console.log(arraySolve[permutation]);
+                            solvePermutationReset();
+                            return;
+                        }
+                        if (blueTurns !== true) {
                             console.log("Picnic on the blue square!");
                             console.log(arraySolve[permutation]);
                             solvePermutationReset();
                             return;
                         }
-                    }
-                    if (hasGreen === true) {
-                        if (arraySolve[permutation].includes("1,1") === true) {
-                            console.log("Loopy Lou on the Lawn!");
-                            console.log(arraySolve[permutation]);
-                            solvePermutationReset();
-                            return;
+                        if (blueTurns === true) {
+                            if (arraySolve[permutation].includes("0,2") === false) {
+                                console.log("Picnic on the blue square!");
+                                console.log(arraySolve[permutation]);
+                                solvePermutationReset();
+                                return;
+                            }
+                        }
+                        if (hasGreen === true) {
+                            if (arraySolve[permutation].includes("1,1") === true) {
+                                console.log("Loopy Lou on the Lawn!");
+                                console.log(arraySolve[permutation]);
+                                solvePermutationReset();
+                                return;
+                            }
                         }
                     }
-
                 }
                 slotMain();
 

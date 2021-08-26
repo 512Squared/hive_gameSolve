@@ -1118,7 +1118,7 @@ back.onload = function () { // .onload calls the sprite sheets / images etc (bac
                     ctx.drawImage(atlas, 840, 0, 35, 35, 938, 560, 35, 35); // yin-yang
 
                     if (tenStarWizards === true) {
-                        document.getElementById('hits').innerHTML = "</br>Sorry to disappoint you, but there are ZERO solutions to this game board. Not a single one! Nada. No eureka moment - no rainbows and unicorns. Just top-level head scratching!</br></br>I did suspect as much. Now, after coding this in Javascript/Canvas (<em>I am a novice JS coder!</em>) and testing every single permutation, I'm confident there is no solution.</br></br>Or maybe my solve algorithm has a flaw &#128522;.</br></br>But feel free to sit back and watch the 25 permutations that came closest. </br></br>Many of the perms follow the same route, but a few take a little bit different route.</br></br>All hail the 10-star Wizards!";
+                        document.getElementById('hits').innerHTML = "</br>Sorry to disappoint you, but there are ZERO solutions to this game board. Not a single one! Nada. No eureka moment - no rainbows and unicorns. Just top-level head scratching!</br></br>I did suspect as much. Now, after coding this in Javascript/Canvas (<em>I was a novice JS coder!</em>) and testing every single permutation, I'm confident there is no solution.</br></br>Or maybe my solve algorithm has a flaw &#128522;.</br></br>But feel free to sit back and watch the 25 permutations that came closest. </br></br>Many of the perms follow the same route, but a few take a little bit different route.</br></br>All hail the 10-star Wizards!";
                     }
 
                     if (everyPerm === true) { //

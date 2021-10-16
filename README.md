@@ -1,2 +1,3 @@
 # hive_gameSolve
- Hopefully this is the last time I set this up
+ Welcome to the Hive game solve project
+ 
